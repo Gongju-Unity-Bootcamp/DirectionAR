@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.IO;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class LoadingManager : MonoBehaviour
 
     private static LoadingManager Create()
     {
-        return Instantiate(Resources.Load<LoadingManager>("05_Prefabs/LoadingUI"));
+        return Instantiate(Resources.Load<LoadingManager>(string.Concat(Path.PREFAB, "LoadingUI")));
     }
 
     public void LoadScene(int sceneIndex)
