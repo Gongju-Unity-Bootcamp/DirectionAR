@@ -5,7 +5,7 @@ using UnityEngine.Diagnostics;
 
 public class UIManager
 {
-    int _order = 10;
+    int _order = -20;
     public static UIManager _instance { get; private set; }
     public UI_Scene SceneUI { get; private set; }
 
@@ -38,7 +38,7 @@ public class UIManager
         }
         else
         {
-            canvas.sortingOrder = -1;
+            canvas.sortingOrder = 0;
         }
     }
 
@@ -100,6 +100,7 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
+        Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         _order--;
     }

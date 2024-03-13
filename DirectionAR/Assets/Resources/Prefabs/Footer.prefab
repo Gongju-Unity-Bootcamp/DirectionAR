@@ -514,6 +514,7 @@ GameObject:
   - component: {fileID: 7675075282023947091}
   - component: {fileID: 8500575476459583880}
   - component: {fileID: 7850974227537357880}
+  - component: {fileID: 173342109679558922}
   m_Layer: 5
   m_Name: Footer
   m_TagString: Untagged
@@ -624,6 +625,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &173342109679558922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8698270565000077755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918b3de779e03604ebd50a1ebd3a28d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9005520824501210427
 GameObject:
   m_ObjectHideFlags: 0

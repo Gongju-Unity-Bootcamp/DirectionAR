@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 3112483283225453664}
   - component: {fileID: 6778611468269560220}
   - component: {fileID: 1843164886420244036}
+  - component: {fileID: 3880462342961269200}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -611,3 +612,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &3880462342961269200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316647536445039270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41643376c3e11ba459c06788389db627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
