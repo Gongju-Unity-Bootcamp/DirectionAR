@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainScene : BaseScene
+public class AwakeScene : BaseScene
 {
     protected override bool Init()
     {
         if (!base.Init()) return false;
 
-        SceneType = Define.SceneType.Main;
+        SceneType = Define.SceneType.Unknown;
 
-        Managers.UI.ShowSceneUI<UI_Scene>("Footer");
-        Managers.UI.ShowPopupUI<UI_Popup>("Main");
+        LoadingManager.Instance.LoadScene((int)Define.SceneNum.Main);
 
         return true;
     }

@@ -8,7 +8,7 @@ public class UI_FooterButton : UI_Scene
     {
         HomeButton,
         NavButton,
-        ExButton,
+        ARZoneButton,
         StreetButton,
     }
 
@@ -21,7 +21,7 @@ public class UI_FooterButton : UI_Scene
 
         BindEvent(GetButton((int)Buttons.HomeButton).gameObject, OnClickHomeButton);
         BindEvent(GetButton((int)Buttons.NavButton).gameObject, OnClickNavButton);
-        BindEvent(GetButton((int)Buttons.ExButton).gameObject, OnClickARExButton);
+        BindEvent(GetButton((int)Buttons.ARZoneButton).gameObject, OnClickARZoneButton);
         BindEvent(GetButton((int)Buttons.StreetButton).gameObject, OnClickStreetButton);
 
         return true;
@@ -29,7 +29,7 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickHomeButton()
     {
-        BaseScene.SceneType = Define.Scene.Main;
+        BaseScene.SceneType = Define.SceneType.Main;
 
         Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("Main");
@@ -37,25 +37,27 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickNavButton()
     {
-        BaseScene.SceneType = Define.Scene.Navigation;
+        BaseScene.SceneType = Define.SceneType.Navigation;
 
         Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("Header");
     }
 
-    void OnClickARExButton()
+    void OnClickARZoneButton()
     {
-        BaseScene.SceneType = Define.Scene.ARZone;
+        BaseScene.SceneType = Define.SceneType.ARZone;
 
         Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("ARDocentMenu");
+        Managers.UI.ShowPopupUI<UI_Popup>("ARZoneMenu");
         Managers.UI.ShowPopupUI<UI_Popup>("Header");
     }
 
     void OnClickStreetButton()
     {
         Debug.Log("OnClickStreetButton");
+        BaseScene.SceneType = Define.SceneType.Street;
 
         Managers.UI.CloseAllPopupUI();
+        Managers.UI.ShowPopupUI<UI_Popup>("Header");
     }
 }

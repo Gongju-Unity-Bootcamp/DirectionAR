@@ -182,7 +182,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 7b18f84ea41b5a149a639ab125c184b4, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 7b18f84ea41b5a149a639ab125c184b4, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 94411d855c4a9114daaec0b6f0749d49, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 94411d855c4a9114daaec0b6f0749d49, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: ad0a8e2069b07cd448b9fa78a1f55f6d, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: ad0a8e2069b07cd448b9fa78a1f55f6d, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 916350877846845889}
   - component: {fileID: 5474960594477614323}
   m_Layer: 0
-  m_Name: ExButton
+  m_Name: ARZoneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: aaec44bdee6a77c45b39cedca04f87ea, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: aaec44bdee6a77c45b39cedca04f87ea, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal

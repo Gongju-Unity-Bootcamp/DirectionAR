@@ -28,14 +28,18 @@ public class UI_HeaderButton : UI_Popup
 
         const string nav = "길찾기";
         const string arZone = "AR 체험존";
+        const string street = "AR 거리뷰";
 
         switch (BaseScene.SceneType)
         {
-            case Define.Scene.Navigation:
+            case Define.SceneType.Navigation:
                 GetText((int)Texts.Title).text = nav;
                 break;
-            case Define.Scene.ARZone:
+            case Define.SceneType.ARZone:
                 GetText((int)Texts.Title).text = arZone;
+                break;
+            case Define.SceneType.Street:
+                GetText((int)Texts.Title).text = street;
                 break;
         }
 
@@ -44,7 +48,7 @@ public class UI_HeaderButton : UI_Popup
 
     void OnClickBackButton()
     {
-        BaseScene.SceneType = Define.Scene.Main;
+        BaseScene.SceneType = Define.SceneType.Main;
 
         Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("Main");

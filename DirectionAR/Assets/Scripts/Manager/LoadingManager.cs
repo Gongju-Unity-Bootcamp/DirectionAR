@@ -16,6 +16,12 @@ public class LoadingManager : MonoBehaviour
     [Header("SceneNum")]
     private int loadSceneIndex;
 
+    [Header("Const")]
+    const float LOADTIME = 0.9f;
+    const float FADETIME = 1f;
+    const float ALPHAMIN = 0f;
+    const float ALPHAMAX = 1f;
+
     public static LoadingManager Instance
     {
         get
@@ -68,7 +74,7 @@ public class LoadingManager : MonoBehaviour
 
         while (!op.isDone)
         {
-            _loadBar.value = Mathf.Clamp01(op.progress / 0.9f);
+            _loadBar.value = Mathf.Clamp01(op.progress / LOADTIME);
             yield return null;
         }
 
@@ -78,12 +84,12 @@ public class LoadingManager : MonoBehaviour
     private IEnumerator Fade(bool isFadeIn)
     {
         float timer = 0f;
-        float startAlpha = isFadeIn ? 0f : 1f;
-        float targetAlpha = isFadeIn ? 1f : 0f;
+        float startAlpha = isFadeIn ? ALPHAMIN : ALPHAMAX;
+        float targetAlpha = isFadeIn ? ALPHAMAX : ALPHAMIN;
 
         _canvasGroup.alpha = startAlpha;
 
-        while (timer <= 1f)
+        while (timer <= FADETIME)
         {
             yield return null;
             timer += Time.deltaTime;

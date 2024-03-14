@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Define
 {
+	public enum SceneNum
+	{
+		Awake,
+		Main,
+	}
+
 	public enum UIEvent
 	{
 		Click,
@@ -13,12 +19,13 @@ public class Define
 		PointerUp,
 	}
 
-	public enum Scene
+	public enum SceneType
 	{
 		Unknown,
 		Main,
 		Navigation,
 		ARZone,
+		Street,
 	}
 
 	public enum Sound
