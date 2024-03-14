@@ -6,6 +6,7 @@ using System.IO;
 
 public class LoadingManager : MonoBehaviour
 {
+
     [Header("Singleton")]
     private static LoadingManager _instance;
 
