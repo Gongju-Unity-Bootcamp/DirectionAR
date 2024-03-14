@@ -48,8 +48,6 @@ public class UI_HeaderButton : UI_Popup
 
     void OnClickBackButton()
     {
-        BaseScene.SceneType = Define.SceneType.Main;
-
         Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("Main");
     }
