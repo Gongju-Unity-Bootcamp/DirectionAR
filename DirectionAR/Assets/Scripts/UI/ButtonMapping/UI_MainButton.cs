@@ -20,6 +20,8 @@ public class UI_MainButton : UI_Popup
         if (base.Init() == false)
             return false;
 
+        BaseScene.SceneType = Define.SceneType.Main;
+
         BindButton(typeof(Buttons));
         
         BindEvent(GetButton((int)Buttons.NavButton).gameObject, OnClickNavButton);
@@ -34,28 +36,18 @@ public class UI_MainButton : UI_Popup
 
     void OnClickNavButton()
     {
-        BaseScene.SceneType = Define.SceneType.Navigation;
-
-        Managers.UI.ClosePopupUI(this);
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        Managers.UI.ShowPopupUI<UI_Popup>("Navigation");
     }
 
     void OnClickARZoneButton()
     {
-        BaseScene.SceneType = Define.SceneType.ARZone;
-
-        Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_Popup>("ARZoneMenu");
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
     }
 
     void OnClickStreetButton()
     {
         Debug.Log("OnClickStreetButton");
-        BaseScene.SceneType = Define.SceneType.Street;
-
-        Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        Managers.UI.ShowPopupUI<UI_Popup>("Street");
     }
 
     void OnClickQuitButton()

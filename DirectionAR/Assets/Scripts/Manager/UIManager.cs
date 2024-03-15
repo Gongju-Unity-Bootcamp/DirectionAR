@@ -9,7 +9,7 @@ public class UIManager
     public static UIManager _instance { get; private set; }
     public UI_Scene SceneUI { get; private set; }
 
-    private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
+    internal Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
 
     private GameObject _root;
 
@@ -69,8 +69,6 @@ public class UIManager
 
         if (parent != null)
             go.transform.SetParent(parent);
-        else if (SceneUI != null)
-            go.transform.SetParent(SceneUI.transform);
         else
             go.transform.SetParent(Root.transform);
 

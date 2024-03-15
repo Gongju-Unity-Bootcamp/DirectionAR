@@ -29,35 +29,22 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickHomeButton()
     {
-        BaseScene.SceneType = Define.SceneType.Main;
-
         Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("Main");
     }
 
     void OnClickNavButton()
     {
-        BaseScene.SceneType = Define.SceneType.Navigation;
-
-        Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        Managers.UI.ShowPopupUI<UI_Popup>("Navigation");
     }
 
     void OnClickARZoneButton()
     {
-        BaseScene.SceneType = Define.SceneType.ARZone;
-
-        Managers.UI.CloseAllPopupUI();
         Managers.UI.ShowPopupUI<UI_Popup>("ARZoneMenu");
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
     }
 
     void OnClickStreetButton()
     {
-        Debug.Log("OnClickStreetButton");
-        BaseScene.SceneType = Define.SceneType.Street;
-
-        Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        Managers.UI.ShowPopupUI<UI_Popup>("Street");
     }
 }
