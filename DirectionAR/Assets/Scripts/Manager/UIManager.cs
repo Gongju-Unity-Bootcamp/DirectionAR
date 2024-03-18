@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 
@@ -100,13 +101,14 @@ public class UIManager
     // 중복 검사
     public void CheckDuplicated(string name)
     {
-        GameObject existingObject = GameObject.Find(name);
-
-        if (existingObject != null)
+        foreach (var popup in _popupStack)
         {
-            if (_popupStack.Count > 0 && _popupStack.Peek().gameObject == existingObject)
-                _popupStack.Pop();
-            Managers.Resource.Destroy(existingObject);
+            if (popup.gameObject.name == name)
+            {
+                _popupStack = new Stack<UI_Popup>(_popupStack.Where(p => p.gameObject.name != name));
+                Managers.Resource.Destroy(popup.gameObject);
+                break;
+            }
         }
     }
 

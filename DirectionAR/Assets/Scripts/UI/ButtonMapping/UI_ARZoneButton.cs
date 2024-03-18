@@ -18,9 +18,8 @@ public class UI_ARZoneButton : UI_Popup
 
         GameObject header = GameObject.Find("Header");
 
-        if (header != null) Managers.Resource.Destroy(header);
-
-        Managers.UI.ShowSceneUI<UI_Scene>("Header");
+        if (header != null) header.GetComponent<UI_HeaderButton>().UpdateTitle();
+        else if(header == null) Managers.UI.ShowSceneUI<UI_Scene>("Header");
 
         // BindButton(typeof(Buttons));
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class UI_HeaderButton : UI_Scene
 {
@@ -26,10 +27,17 @@ public class UI_HeaderButton : UI_Scene
         BindEvent(GetButton((int)Buttons.BackButton).gameObject, OnClickBackButton);
         BindEvent(GetButton((int)Buttons.EmergencyButton).gameObject, OnClickEmergencyButton);
 
-        const string nav = "길찾기";
-        const string arZone = "AR 체험존";
-        const string street = "AR 거리뷰";
+        UpdateTitle();
 
+        return true;
+    }
+
+    const string nav = "길찾기";
+    const string arZone = "AR 체험존";
+    const string street = "AR 거리뷰";
+
+    public void UpdateTitle()
+    {
         switch (BaseScene.SceneType)
         {
             case Define.SceneType.Navigation:
@@ -42,8 +50,6 @@ public class UI_HeaderButton : UI_Scene
                 GetText((int)Texts.Title).text = street;
                 break;
         }
-
-        return true;
     }
 
     void OnClickBackButton()
@@ -62,3 +68,4 @@ public class UI_HeaderButton : UI_Scene
         Debug.Log("OnClickEmergencyButton");
     }
 }
+
