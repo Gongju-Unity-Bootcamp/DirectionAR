@@ -22,6 +22,10 @@ public class UI_MainButton : UI_Popup
 
         BaseScene.SceneType = Define.SceneType.Main;
 
+        GameObject header = GameObject.Find("Header");
+
+        if (header != null) Managers.Resource.Destroy(header);
+
         BindButton(typeof(Buttons));
         
         BindEvent(GetButton((int)Buttons.NavButton).gameObject, OnClickNavButton);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_HeaderButton : UI_Popup
+public class UI_HeaderButton : UI_Scene
 {
     enum Texts
     {
@@ -48,8 +48,13 @@ public class UI_HeaderButton : UI_Popup
 
     void OnClickBackButton()
     {
-        Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("Main");
+        Managers.UI.ClosePopupUI();
+
+        if (Managers.UI._popupStack.Count <= 1)
+        {
+            Managers.UI.CloseAllPopupUI();
+            Managers.UI.ShowPopupUI<UI_Popup>("Main");
+        }
     }
 
     void OnClickEmergencyButton()

@@ -5,13 +5,25 @@ using UnityEngine.Diagnostics;
 
 public class UIManager
 {
-    int _order = -20;
+    const int ORIGINORDER = short.MinValue;
+    int _order = short.MinValue;
     public static UIManager _instance { get; private set; }
     public UI_Scene SceneUI { get; private set; }
 
     internal Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
 
     private GameObject _root;
+
+    public void Init()
+    {
+        Screen.fullScreen = false;
+        StatusBarControl(true);
+    }
+
+    public void StatusBarControl(bool _isVisible)
+    {
+        ApplicationChrome.statusBarState = _isVisible ? ApplicationChrome.States.Visible : ApplicationChrome.States.Hidden;
+    }
 
     public GameObject Root
     {
@@ -35,6 +47,10 @@ public class UIManager
         {
             canvas.sortingOrder = _order;
             _order++;
+        }
+        else if (go.CompareTag("AlwaysOnTop"))
+        {
+            canvas.sortingOrder = short.MaxValue;
         }
         else
         {
@@ -61,11 +77,14 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
+        CheckDuplicated(name);
+
         GameObject prefab = Managers.Resource.Load<GameObject>(Path.PREFAB + name);
 
         GameObject go = Managers.Resource.Instantiate($"{name}");
         T popup = Utils.GetOrAddComponent<T>(go);
-        _popupStack.Push(popup);
+        if(!_popupStack.Contains(popup))
+            _popupStack.Push(popup);
 
         if (parent != null)
             go.transform.SetParent(parent);
@@ -76,6 +95,19 @@ public class UIManager
         go.transform.localPosition = prefab.transform.position;
 
         return popup;
+    }
+
+    // 중복 검사
+    public void CheckDuplicated(string name)
+    {
+        GameObject existingObject = GameObject.Find(name);
+
+        if (existingObject != null)
+        {
+            if (_popupStack.Count > 0 && _popupStack.Peek().gameObject == existingObject)
+                _popupStack.Pop();
+            Managers.Resource.Destroy(existingObject);
+        }
     }
 
     public void ClosePopupUI(UI_Popup popup)
@@ -98,8 +130,13 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        Managers.Resource.Destroy(popup.gameObject);
-        popup = null;
+
+        if (popup != null)
+        {
+            Managers.Resource.Destroy(popup.gameObject);
+            popup = null;
+        }
+
         _order--;
     }
 
@@ -107,5 +144,7 @@ public class UIManager
     {
         while (_popupStack.Count > 0)
             ClosePopupUI();
+
+        _order = ORIGINORDER;
     }
 }

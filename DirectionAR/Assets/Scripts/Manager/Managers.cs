@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -31,6 +29,7 @@ public class Managers : MonoBehaviour
             _instance = Utils.GetOrAddComponent<Managers>(go);
             DontDestroyOnLoad(go);
 
+            _uiManager.Init();
             _resourceManager.Init();
 
             Application.targetFrameRate = 60;
