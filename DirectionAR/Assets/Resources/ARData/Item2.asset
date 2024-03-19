@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Item2
   m_EditorClassIdentifier: 
   id: 2
-  title: "\uD0C0\uC774\uB97C2"
-  info: "\uC778\uD3EC\uBA54\uC774\uC158"
+  title: "\uAE30\uCC28 \uBCBD\uD654"
+  info: Train Paint
   coverImage: {fileID: 21300000, guid: edc5925271759534bbf2ff15d0632edd, type: 3}

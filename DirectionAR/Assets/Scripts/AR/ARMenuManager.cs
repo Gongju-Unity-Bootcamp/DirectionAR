@@ -14,7 +14,8 @@ public class ARMenuManager : MonoBehaviour
     public List<Item> items = new List<Item>();
     public Transform _content;
     public GameObject _item;
-    public static int _currentId = default;
+
+    public Item _currentItem = null;
 
     public void Init()
     {
@@ -57,7 +58,7 @@ public class ARMenuManager : MonoBehaviour
             var itemInfo = obj.transform.Find("Info").GetComponent<TextMeshProUGUI>();
             var itemCoverImage = obj.transform.Find("CoverImage").GetComponent<Image>();
 
-            itemId.id = item.id;
+            itemId.item = item;
             itemTitle.text = item.title;
             itemInfo.text = item.info;
             itemCoverImage.sprite = item.coverImage;

@@ -30,9 +30,12 @@ public class UI_ARZoneButton : UI_Popup
     public static void LoadObjects()
     {
         ResetObjects();
+        UnityEngine.Object[] list = Resources.LoadAll(Path.ARData);
 
-        Managers.ARMenu.Add(Managers.Resource.LoadARData("Item1"));
-        Managers.ARMenu.Add(Managers.Resource.LoadARData("Item2"));
+        foreach(var obj in list)
+        {
+            Managers.ARMenu.Add(Managers.Resource.LoadARData($"{obj.name}"));
+        }
 
         Managers.ARMenu.ListItems();
     }
