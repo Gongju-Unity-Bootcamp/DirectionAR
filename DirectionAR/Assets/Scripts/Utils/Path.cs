@@ -6,4 +6,5 @@ public static class Path
 {
     public const string SOUND = "Sounds/";
     public const string PREFAB = "Prefabs/";
+    public const string ARData = "ARData/";
 }

@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class UI_ARZoneButton : UI_Popup
 {
-    enum Buttons
-    {
-        ARZoneButton,
-    }
-
     public override bool Init()
     {
         if (base.Init() == false)
@@ -17,18 +12,40 @@ public class UI_ARZoneButton : UI_Popup
 
         BaseScene.SceneType = Define.SceneType.ARZone;
 
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        GameObject header = GameObject.Find("Header");
 
-        BindButton(typeof(Buttons));
+        if (header != null) header.GetComponent<UI_HeaderButton>().UpdateTitle();
+        else if (header == null) Managers.UI.ShowSceneUI<UI_Scene>("Header");
 
-        BindEvent(GetButton((int)Buttons.ARZoneButton).gameObject, OnClickARZoneInfoButton);
+        if (Managers.ARMenu._content == null)
+        {
+            Managers.ARMenu._content = transform.Find("Scroll View/Viewport/Content").transform;
+        }
+
+        LoadObjects();
 
         return true;
     }
 
-    void OnClickARZoneInfoButton()
+    public static void LoadObjects()
     {
-        Debug.Log("OnClickARZoneInfoButton");
-        Managers.UI.ShowPopupUI<UI_Popup>("ARZoneInfo");
+        ResetObjects();
+
+        Managers.ARMenu.Add(Managers.Resource.LoadARData("Item1"));
+        Managers.ARMenu.Add(Managers.Resource.LoadARData("Item2"));
+
+        Managers.ARMenu.ListItems();
+    }
+
+    public static void ResetObjects()
+    {
+        if (Managers.ARMenu.items.Count == 0) return;
+
+        for(int i = 0; i < Managers.ARMenu.items.Count; i++)
+        {
+            Managers.ARMenu.Remove(Managers.ARMenu.items[i]);
+        }
+
+        Managers.ARMenu.items.Clear();
     }
 }

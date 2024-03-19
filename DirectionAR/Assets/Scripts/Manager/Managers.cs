@@ -9,9 +9,11 @@ public class Managers : MonoBehaviour
 
     private static UIManager _uiManager = new UIManager();
     private static ResourceManager _resourceManager = new ResourceManager();
+    private static ARMenuManager _arMenuManager = new ARMenuManager();
 
     public static UIManager UI { get { Init(); return _uiManager; } }
     public static ResourceManager Resource { get { Init(); return _resourceManager; } }
+    public static ARMenuManager ARMenu { get { Init(); return _arMenuManager; } }
 
     private void Start()
     {
@@ -31,8 +33,7 @@ public class Managers : MonoBehaviour
 
             _uiManager.Init();
             _resourceManager.Init();
-
-            Application.targetFrameRate = 60;
+            _arMenuManager.Init();
         }
     }
 }
