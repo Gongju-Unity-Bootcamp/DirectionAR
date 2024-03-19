@@ -14,6 +14,8 @@ public class ResourceManager
 
     public GameObject LoadPrefab(string path) => Load<GameObject>(string.Concat(Path.PREFAB, path));
 
+    public Item LoadARData(string path) => Resources.Load<Item>(string.Concat(Path.ARData, path));
+
     public AudioClip LoadAudioClip(string path) => Load<AudioClip>(string.Concat(Path.SOUND, path));
 
     public T Load<T>(string path) where T : Object

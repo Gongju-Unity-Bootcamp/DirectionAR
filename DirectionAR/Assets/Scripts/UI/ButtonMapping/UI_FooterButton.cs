@@ -38,11 +38,19 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickNavButton()
     {
+
         Managers.UI.ShowPopupUI<UI_Popup>("Navigation");
     }
 
     void OnClickARZoneButton()
     {
+        GameObject arZoneButton = GameObject.Find("ARZoneButton");
+
+        if (arZoneButton != null)
+        {
+            Managers.ARMenu._content = null;
+        }
+
         Managers.UI.ShowPopupUI<UI_Popup>("ARZoneMenu");
     }
 
