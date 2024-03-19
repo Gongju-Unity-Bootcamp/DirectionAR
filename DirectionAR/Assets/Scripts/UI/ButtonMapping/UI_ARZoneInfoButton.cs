@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_ARZoneInfoButton : UI_Popup
 {
@@ -17,20 +18,25 @@ public class UI_ARZoneInfoButton : UI_Popup
         StartButton,
     }
 
+    private Image _coverImage;
+
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
+        _coverImage = Utils.FindChild<Image>(gameObject, "Background");
+
+        BindText(typeof(Texts));
         BindButton(typeof(Buttons));
 
         BindEvent(GetButton((int)Buttons.CloseButton).gameObject, OnClickCloseButton);
         BindEvent(GetButton((int)Buttons.GetLocationButton).gameObject, OnClickGetLocationButton);
         BindEvent(GetButton((int)Buttons.StartButton).gameObject, OnClickStartButton);
 
-
-        // GetText((int)Texts.Title).text = Managers.ARMenu._currentItem.title;
-        // GetText((int)Texts.Info).text = Managers.ARMenu._currentItem.info;
+        _coverImage.sprite = Managers.ARMenu._currentItem.coverImage;
+        GetText((int)Texts.Title).text = Managers.ARMenu._currentItem.title;
+        GetText((int)Texts.Info).text = Managers.ARMenu._currentItem.info;
 
         return true;
     }
