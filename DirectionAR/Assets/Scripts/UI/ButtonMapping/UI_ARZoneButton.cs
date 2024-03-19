@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class UI_ARZoneButton : UI_Popup
 {
     enum Buttons
     {
-        // NavButton,
+        ARZoneButton,
     }
 
     public override bool Init()
@@ -16,15 +17,18 @@ public class UI_ARZoneButton : UI_Popup
 
         BaseScene.SceneType = Define.SceneType.ARZone;
 
-        GameObject header = GameObject.Find("Header");
+        Managers.UI.ShowPopupUI<UI_Popup>("Header");
 
-        if (header != null) header.GetComponent<UI_HeaderButton>().UpdateTitle();
-        else if(header == null) Managers.UI.ShowSceneUI<UI_Scene>("Header");
+        BindButton(typeof(Buttons));
 
-        // BindButton(typeof(Buttons));
-
-        // BindEvent(GetButton((int)Buttons.NavButton).gameObject, OnClickNavButton);
+        BindEvent(GetButton((int)Buttons.ARZoneButton).gameObject, OnClickARZoneInfoButton);
 
         return true;
+    }
+
+    void OnClickARZoneInfoButton()
+    {
+        Debug.Log("OnClickARZoneInfoButton");
+        Managers.UI.ShowPopupUI<UI_Popup>("ARZoneInfo");
     }
 }
