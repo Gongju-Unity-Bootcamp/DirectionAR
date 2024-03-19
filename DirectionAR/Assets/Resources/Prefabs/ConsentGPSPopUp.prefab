@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 3063115386641952050}
   - component: {fileID: 1519132671370553028}
   - component: {fileID: 1439163289439402515}
+  - component: {fileID: 7610405483127346873}
   m_Layer: 5
   m_Name: ConsentGPSPopUp
   m_TagString: Untagged
@@ -280,6 +281,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &7610405483127346873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186803765510635819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88926a04d6cf11d4290e941dea91f394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4950270030315885198
 GameObject:
   m_ObjectHideFlags: 0
