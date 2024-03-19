@@ -46,12 +46,16 @@ public class UIManager
 
         if (sort)
         {
-            canvas.sortingOrder = _order;
             _order++;
+            canvas.sortingOrder = _order;
         }
         else if (go.CompareTag("AlwaysOnTop"))
         {
             canvas.sortingOrder = short.MaxValue;
+        }
+        else if (go.CompareTag("AlwaysOnBottom"))
+        {
+            canvas.sortingOrder = short.MinValue;
         }
         else
         {
@@ -78,14 +82,12 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        CheckDuplicated(name);
-
         GameObject prefab = Managers.Resource.Load<GameObject>(Path.PREFAB + name);
 
         GameObject go = Managers.Resource.Instantiate($"{name}");
         T popup = Utils.GetOrAddComponent<T>(go);
-        if(!_popupStack.Contains(popup))
-            _popupStack.Push(popup);
+
+        _popupStack.Push(popup);
 
         if (parent != null)
             go.transform.SetParent(parent);
@@ -96,20 +98,6 @@ public class UIManager
         go.transform.localPosition = prefab.transform.position;
 
         return popup;
-    }
-
-    // 중복 검사
-    public void CheckDuplicated(string name)
-    {
-        foreach (var popup in _popupStack)
-        {
-            if (popup.gameObject.name == name)
-            {
-                _popupStack = new Stack<UI_Popup>(_popupStack.Where(p => p.gameObject.name != name));
-                Managers.Resource.Destroy(popup.gameObject);
-                break;
-            }
-        }
     }
 
     public void ClosePopupUI(UI_Popup popup)

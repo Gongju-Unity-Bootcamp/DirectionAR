@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class UI_HeaderButton : UI_Scene
 {
@@ -50,17 +51,44 @@ public class UI_HeaderButton : UI_Scene
                 GetText((int)Texts.Title).text = street;
                 break;
         }
+
+        type.Push(BaseScene.SceneType);
+    }
+
+    Stack<Define.SceneType> type = new Stack<Define.SceneType> { };
+
+    public void UpdatePrevTitle()
+    {
+        if (type.Count() <= 1)
+            return;
+            
+        type.Pop();
+
+        switch (type.Peek())
+        {
+            case Define.SceneType.Navigation:
+                GetText((int)Texts.Title).text = nav;
+                break;
+            case Define.SceneType.ARZone:
+                GetText((int)Texts.Title).text = arZone;
+                break;
+            case Define.SceneType.Street:
+                GetText((int)Texts.Title).text = street;
+                break;
+        }
     }
 
     void OnClickBackButton()
     {
-        Managers.UI.ClosePopupUI();
-
-        if (Managers.UI._popupStack.Count <= 1)
+        if (Managers.UI._popupStack.Count < 2)
         {
             Managers.UI.CloseAllPopupUI();
-            Managers.UI.ShowPopupUI<UI_Popup>("Main");
+            Managers.Resource.Destroy(GameObject.Find("Header"));
         }
+
+        Managers.UI.ClosePopupUI();
+
+        UpdatePrevTitle();
     }
 
     void OnClickEmergencyButton()

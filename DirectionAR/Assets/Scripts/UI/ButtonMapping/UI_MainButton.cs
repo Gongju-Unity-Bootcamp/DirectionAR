@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_MainButton : UI_Popup
+public class UI_MainButton : UI_Scene
 {
     enum Buttons
     {
