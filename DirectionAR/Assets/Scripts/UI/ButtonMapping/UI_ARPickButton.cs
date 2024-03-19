@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_ARPickButton : MonoBehaviour
 {
-    public int id;
+    public Item item;
 
     public void Awake()
     {
@@ -14,6 +14,8 @@ public class UI_ARPickButton : MonoBehaviour
 
     void OnClickARZoneButton()
     {
+        Managers.ARMenu._currentItem = item;
+
         Managers.UI.ShowPopupUI<UI_Popup>("ARZoneInfo");
     }
 }

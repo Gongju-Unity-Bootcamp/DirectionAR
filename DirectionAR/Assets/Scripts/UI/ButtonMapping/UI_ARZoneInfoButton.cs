@@ -28,6 +28,10 @@ public class UI_ARZoneInfoButton : UI_Popup
         BindEvent(GetButton((int)Buttons.GetLocationButton).gameObject, OnClickGetLocationButton);
         BindEvent(GetButton((int)Buttons.StartButton).gameObject, OnClickStartButton);
 
+
+        // GetText((int)Texts.Title).text = Managers.ARMenu._currentItem.title;
+        // GetText((int)Texts.Info).text = Managers.ARMenu._currentItem.info;
+
         return true;
     }
 

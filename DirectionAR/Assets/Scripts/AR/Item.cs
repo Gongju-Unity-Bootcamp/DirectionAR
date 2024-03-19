@@ -9,4 +9,4 @@ public class Item : ScriptableObject
     public string title;
     public string info;
     public Sprite coverImage;
-}
+}  
