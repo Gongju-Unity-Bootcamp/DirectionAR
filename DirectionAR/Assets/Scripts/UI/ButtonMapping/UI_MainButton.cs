@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_MainButton : UI_Popup
+public class UI_MainButton : UI_Scene
 {
     enum Buttons
     {
@@ -21,6 +21,10 @@ public class UI_MainButton : UI_Popup
             return false;
 
         BaseScene.SceneType = Define.SceneType.Main;
+
+        GameObject header = GameObject.Find("Header");
+
+        if (header != null) Managers.Resource.Destroy(header);
 
         BindButton(typeof(Buttons));
         

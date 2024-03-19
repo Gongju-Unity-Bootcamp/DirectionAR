@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8876276862628986934}
   - component: {fileID: 3462021363830120632}
   - component: {fileID: 8520056111682612133}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 348}
+  m_SizeDelta: {x: 0, y: 220}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3462021363830120632
 CanvasRenderer:
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 306002562324793963}
   - component: {fileID: 8262853679548739366}
   - component: {fileID: 6762033935059890698}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HomeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 6465965819320208722}
   - component: {fileID: 1854453265422705371}
   - component: {fileID: 7991524011246163116}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StreetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4265143460509868129}
   - component: {fileID: 7686700649260878955}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 235.5}
+  m_AnchoredPosition: {x: 0, y: 105}
   m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &7686700649260878955
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 4710860310560033343}
   - component: {fileID: 1454758935131648773}
   - component: {fileID: 8775406356969588642}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NavButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 173342109679558922}
   m_Layer: 5
   m_Name: Footer
-  m_TagString: Untagged
+  m_TagString: AlwaysOnTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 9083997823858877384}
   - component: {fileID: 916350877846845889}
   - component: {fileID: 5474960594477614323}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ARZoneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

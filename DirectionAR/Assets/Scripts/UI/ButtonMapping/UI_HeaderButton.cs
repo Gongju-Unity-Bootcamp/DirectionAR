@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Unity.VisualScripting;
 
-public class UI_HeaderButton : UI_Popup
+public class UI_HeaderButton : UI_Scene
 {
     enum Texts
     {
@@ -26,10 +28,17 @@ public class UI_HeaderButton : UI_Popup
         BindEvent(GetButton((int)Buttons.BackButton).gameObject, OnClickBackButton);
         BindEvent(GetButton((int)Buttons.EmergencyButton).gameObject, OnClickEmergencyButton);
 
-        const string nav = "길찾기";
-        const string arZone = "AR 체험존";
-        const string street = "AR 거리뷰";
+        UpdateTitle();
 
+        return true;
+    }
+
+    const string nav = "길찾기";
+    const string arZone = "AR 체험존";
+    const string street = "AR 거리뷰";
+
+    public void UpdateTitle()
+    {
         switch (BaseScene.SceneType)
         {
             case Define.SceneType.Navigation:
@@ -43,13 +52,43 @@ public class UI_HeaderButton : UI_Popup
                 break;
         }
 
-        return true;
+        type.Push(BaseScene.SceneType);
+    }
+
+    Stack<Define.SceneType> type = new Stack<Define.SceneType> { };
+
+    public void UpdatePrevTitle()
+    {
+        if (type.Count() <= 1)
+            return;
+            
+        type.Pop();
+
+        switch (type.Peek())
+        {
+            case Define.SceneType.Navigation:
+                GetText((int)Texts.Title).text = nav;
+                break;
+            case Define.SceneType.ARZone:
+                GetText((int)Texts.Title).text = arZone;
+                break;
+            case Define.SceneType.Street:
+                GetText((int)Texts.Title).text = street;
+                break;
+        }
     }
 
     void OnClickBackButton()
     {
-        Managers.UI.CloseAllPopupUI();
-        Managers.UI.ShowPopupUI<UI_Popup>("Main");
+        if (Managers.UI._popupStack.Count < 2)
+        {
+            Managers.UI.CloseAllPopupUI();
+            Managers.Resource.Destroy(GameObject.Find("Header"));
+        }
+
+        Managers.UI.ClosePopupUI();
+
+        UpdatePrevTitle();
     }
 
     void OnClickEmergencyButton()
@@ -57,3 +96,4 @@ public class UI_HeaderButton : UI_Popup
         Debug.Log("OnClickEmergencyButton");
     }
 }
+

@@ -16,7 +16,10 @@ public class UI_NavButton : UI_Popup
 
         BaseScene.SceneType = Define.SceneType.Navigation;
 
-        Managers.UI.ShowPopupUI<UI_Popup>("Header");
+        GameObject header = GameObject.Find("Header");
+
+        if (header != null) header.GetComponent<UI_HeaderButton>().UpdateTitle();
+        else if (header == null) Managers.UI.ShowSceneUI<UI_Scene>("Header");
 
         // BindButton(typeof(Buttons));
 
