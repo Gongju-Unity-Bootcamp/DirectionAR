@@ -7,8 +7,10 @@ public class Define
 {
 	public enum SceneNum
 	{
+		Consent,
 		Awake,
 		Main,
+		ARCamera,
 	}
 
 	public enum UIEvent

@@ -30,6 +30,8 @@ public class BaseScene : MonoBehaviour
             DontDestroyOnLoad(go);
         }
 
+        Application.targetFrameRate = 30;
+
         return true;
     }
 

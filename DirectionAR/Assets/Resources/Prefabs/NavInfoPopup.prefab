@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 5947588062463845732}
   - component: {fileID: 2710067629090702092}
   - component: {fileID: 8010260846558136456}
-  - component: {fileID: 8667505328228987594}
   m_Layer: 5
   m_Name: NavInfoPopup
   m_TagString: Untagged
@@ -226,25 +225,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8667505328228987594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2428704523909559170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 0
-  m_CheckFor2DOcclusion: 0
-  m_CheckFor3DOcclusion: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RaycastTriggerInteraction: 1
 --- !u!1 &4211290973934709445
 GameObject:
   m_ObjectHideFlags: 0
