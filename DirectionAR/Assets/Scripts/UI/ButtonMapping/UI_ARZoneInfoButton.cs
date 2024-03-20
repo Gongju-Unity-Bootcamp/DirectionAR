@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class UI_ARZoneInfoButton : UI_Popup
 {
@@ -53,6 +55,23 @@ public class UI_ARZoneInfoButton : UI_Popup
 
     void OnClickStartButton()
     {
-        Debug.Log("Start");
+        bool permission = Permission.HasUserAuthorizedPermission(Permission.Camera);
+
+        if(!permission)
+        {
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentCameraPopUp");
+        }
+        else
+        {
+            ClosePopupUI();
+
+            Scene previousScene = SceneManager.GetActiveScene();
+            foreach (GameObject obj in previousScene.GetRootGameObjects())
+            {
+                obj.SetActive(false);
+            }
+
+            SceneManager.LoadScene((int)Define.SceneNum.ARCamera, LoadSceneMode.Additive);
+        }
     }
 }
