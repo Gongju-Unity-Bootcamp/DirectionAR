@@ -40,9 +40,9 @@ public class UI_ConsentGPSButton : UI_Popup
 
     IEnumerator SetPermission()
     {
-        bool camPermission = Permission.HasUserAuthorizedPermission(Permission.Camera);
+        bool GPSPermission = Permission.HasUserAuthorizedPermission(Permission.FineLocation);
 
-        if (!camPermission)
+        if (!GPSPermission)
         {
             try
             {
