@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 6037359592913526532}
   - component: {fileID: 3063115386641952050}
   - component: {fileID: 1519132671370553028}
-  - component: {fileID: 3753731024861747634}
+  - component: {fileID: 34286764052715954}
   m_Layer: 5
-  m_Name: ConsentCameraPopUp
+  m_Name: ConsentCameraTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3753731024861747634
+--- !u!114 &34286764052715954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4186803765510635819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c655b2f30fbdefe4db12aaf8fc47c0ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aa25d64005c54b4db434eb897638baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4950270030315885198
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 915ee20397484904585a8bb07989a53a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08959c7a2fc6f394e97916dda58c5708, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

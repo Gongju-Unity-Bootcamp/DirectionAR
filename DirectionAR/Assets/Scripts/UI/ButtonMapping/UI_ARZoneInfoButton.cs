@@ -50,14 +50,23 @@ public class UI_ARZoneInfoButton : UI_Popup
 
     void OnClickGetLocationButton()
     {
-        Debug.Log("GetLocation");
+        bool GPSPermission = Permission.HasUserAuthorizedPermission(Permission.FineLocation);
+
+        if(!GPSPermission)
+        {
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentGPSPopUp");
+        }
+        else
+        {
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentGPSTemp");
+        }
     }
 
     void OnClickStartButton()
     {
-        bool permission = Permission.HasUserAuthorizedPermission(Permission.Camera);
+        bool camPermission = Permission.HasUserAuthorizedPermission(Permission.Camera);
 
-        if(!permission)
+        if(!camPermission)
         {
             Managers.UI.ShowPopupUI<UI_Popup>("ConsentCameraPopUp");
         }
