@@ -50,7 +50,7 @@ public class UI_MainButton : UI_Scene
 
     void OnClickStreetButton()
     {
-        Debug.Log("OnClickStreetButton");
+        Managers.Android.ShowAndroidToastMessage("OnClickStreetButton");
         Managers.UI.ShowPopupUI<UI_Popup>("Street");
     }
 
@@ -65,11 +65,11 @@ public class UI_MainButton : UI_Scene
 
     void OnClickEmergencyButton()
     {
-        Debug.Log("OnClickEmergencyButton");
+        Managers.Android.ShowAndroidToastMessage("OnClickEmergencyButton");
     }
 
     void OnClickMagnifierButton()
     {
-        Debug.Log("OnClickMagnifierButton");
+        Managers.Android.ShowAndroidToastMessage("OnClickMagnifierButton");
     }
 }

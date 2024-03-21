@@ -84,6 +84,7 @@ public class UI_HeaderButton : UI_Scene
         {
             Managers.UI.CloseAllPopupUI();
             Managers.Resource.Destroy(GameObject.Find("Header"));
+            BaseScene.SceneType = Define.SceneType.Main;
         }
 
         Managers.UI.ClosePopupUI();

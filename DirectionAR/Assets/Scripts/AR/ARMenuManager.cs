@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class ARMenuManager : MonoBehaviour
 {
-    private static ARMenuManager _instance;
-    public static ARMenuManager Instance => _instance ??= _instance = new ARMenuManager();
-    GameObject _arMenuManager;
+    public static ARMenuManager _instance { get; private set; }
 
     public List<Item> items = new List<Item>();
     public Transform _content;
@@ -19,14 +17,6 @@ public class ARMenuManager : MonoBehaviour
 
     public void Init()
     {
-        _arMenuManager = GameObject.Find("@ARMenuManager");
-
-        if (_arMenuManager == null)
-        {
-            _arMenuManager = new GameObject { name = "@ARMenuManager" };
-            UnityEngine.Object.DontDestroyOnLoad(_arMenuManager);
-        }
-
         if (_item == null)
         {
             _item = Resources.Load<GameObject>("Prefabs/ARZoneButton");
