@@ -12,9 +12,19 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
-		<meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true"/>
     </application>
-	<!--STORAGE permissions-->
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	
+	<!--Required Permissions-->
+	<uses-feature android:name="android.hardware.camera" android:required="true"/>
+	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+
+	<uses-feature android:name="android.hardware.location" android:required="true"/>
+	<uses-feature android:name="android.harware.location.gps" android:required="true"/>
+	
+	<!--Requesting Permissions-->
+	<uses-permission android:name="android.permission.CAMREA"/>
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	
 </manifest>
