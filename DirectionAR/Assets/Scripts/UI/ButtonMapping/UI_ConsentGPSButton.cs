@@ -25,52 +25,14 @@ public class UI_ConsentGPSButton : UI_Popup
 
     void OnClickAllowButton()
     {
-        bool GPSPermission = Permission.HasUserAuthorizedPermission(Permission.FineLocation);
-        
-        if(!GPSPermission)
+        if(!Managers.Android.CheckPerm(Permission.FineLocation))
         {
-            StartCoroutine(SetPermission());
+            StartCoroutine(Managers.Android.SetPermission(Permission.FineLocation));
             ClosePopupUI();
         }
         else
         {
             ClosePopupUI();
-        }
-    }
-
-    IEnumerator SetPermission()
-    {
-        bool GPSPermission = Permission.HasUserAuthorizedPermission(Permission.FineLocation);
-
-        if (!GPSPermission)
-        {
-            try
-            {
-#if UNITY_ANDROID
-                using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-                using (AndroidJavaObject currentActivityObject = unityClass.GetStatic<AndroidJavaObject>("currentActivity"))
-                {
-                    string packageName = currentActivityObject.Call<string>("getPackageName");
-
-                    using (var uriClass = new AndroidJavaClass("android.net.Uri"))
-                    using (AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("fromParts", "package", packageName, null))
-                    using (var intentObject = new AndroidJavaObject("android.content.Intent", "android.settings.APPLICATION_DETAILS_SETTINGS", uriObject))
-                    {
-                        intentObject.Call<AndroidJavaObject>("addCategory", "android.intent.category.DEFAULT");
-                        intentObject.Call<AndroidJavaObject>("setFlags", 0x10000000);
-                        currentActivityObject.Call("startActivity", intentObject);
-                    }
-                }
-#endif
-            }
-            catch (Exception ex)
-            {
-                Debug.LogException(ex);
-            }
-
-            yield return new WaitForSeconds(1f);
-
-            yield return new WaitUntil(() => Application.isFocused == true);
         }
     }
 }

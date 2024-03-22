@@ -6,6 +6,7 @@ using UnityEngine;
 public class ResourceManager
 {
     public Dictionary<string, GameObject> _prefabs = new Dictionary<string, GameObject>();
+    public Dictionary<string, Item> _arDatas = new Dictionary<string, Item>();
     public Dictionary<string, AudioClip> _sounds = new Dictionary<string, AudioClip>();
 
     public void Init()
@@ -14,11 +15,11 @@ public class ResourceManager
 
     public GameObject LoadPrefab(string path) => Load<GameObject>(string.Concat(Path.PREFAB, path));
 
-    public Item LoadARData(string path) => Resources.Load<Item>(string.Concat(Path.ARData, path));
-
     public AudioClip LoadAudioClip(string path) => Load<AudioClip>(string.Concat(Path.SOUND, path));
 
-    public T Load<T>(string path) where T : Object
+    public Item LoadARData(string path = null) => Load<Item>(string.Concat(Path.ARData, path));
+
+    public T Load<T>(string path = null) where T : Object
     {
         if (typeof(T) == typeof(GameObject))
         {
@@ -28,6 +29,20 @@ public class ResourceManager
             GameObject go = Resources.Load<GameObject>(path);
             _prefabs.Add(path, go);
             return go as T;
+        }
+        else if (typeof(T) == typeof(Item))
+        {
+            if (_arDatas.TryGetValue(path, out Item item))
+                return item as T;
+
+            _arDatas.Clear();
+
+            Item[] data = Resources.LoadAll<Item>(path);
+            foreach (var items in data)
+            {
+                _arDatas.Add(path + items.name, items);
+            }
+            return data as T;
         }
         else if (typeof(T) == typeof(AudioClip))
         {

@@ -29,11 +29,13 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickHomeButton()
     {
-        Managers.UI.CloseAllPopupUI();
-
         GameObject header = GameObject.Find("Header");
 
         if (header != null) Managers.Resource.Destroy(header);
+
+        Managers.UI.CloseAllPopupUI();
+
+        BaseScene.SceneType = Define.SceneType.Main;
     }
 
     void OnClickNavButton()
