@@ -14,12 +14,6 @@ public class AndroidManager : MonoBehaviour
         _instance.transform.SetParent(GameObject.Find("@Managers").transform);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T))
-            Debug.Log(BaseScene.SceneType);
-    }
-
     public GameObject Root
     {
         get
@@ -46,7 +40,7 @@ public class AndroidManager : MonoBehaviour
 
             if (go == null) return;
 
-            if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Escape)
+            if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Escape)
             {
                 if (Managers.UI._popupStack.Count < 2)
                 {
@@ -60,11 +54,13 @@ public class AndroidManager : MonoBehaviour
                 Managers.UI.ClosePopupUI();
 
                 go.GetComponent<UI_HeaderButton>().UpdatePrevTitle();
+
+                return;
             }
         }
         if (BaseScene.SceneType == Define.SceneType.Main)
         {
-            if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Escape)
+            if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Escape)
             {
                 if (Time.time - backButtonPressTime > backButtonPressInterval)
                 {
