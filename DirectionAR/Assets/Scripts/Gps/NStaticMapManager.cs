@@ -38,7 +38,7 @@ public class NStaticMapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(frame >= 100)
+        if (frame >= 100)
         {
             StartCoroutine(GetStaticMap());
             frame = 0;
@@ -49,11 +49,10 @@ public class NStaticMapManager : MonoBehaviour
 
     IEnumerator GetStaticMap()
     {
-        url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?" + "w=" + mapWidth + "&h="+ mapHeight + "&level="+ level;
+        url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?" + "w=" + mapWidth + "&h="+ mapHeight + "&level="+ level +"&format=png";
 
         var query = "";
         query += "&center=" + UnityWebRequest.UnEscapeURL(string.Format("{0},{1}", Input.location.lastData.latitude, Input.location.lastData.longitude));
-
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url + query);
         www.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", clientID);

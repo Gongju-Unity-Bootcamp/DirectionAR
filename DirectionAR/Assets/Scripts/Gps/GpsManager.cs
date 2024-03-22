@@ -13,6 +13,7 @@ public class GpsManager : MonoBehaviour
     public float delay;
     public float maxtime = 5f;
 
+    private int frame = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,8 +63,11 @@ public class GpsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        data[0].text = "위도 :" + Input.location.lastData.latitude.ToString();
-        data[1].text = "경도 :" + Input.location.lastData.longitude.ToString();
-        data[2].text = "고도 :" + Input.location.lastData.altitude.ToString();
+        if (frame >= 100)
+        {
+            StartCoroutine(Gps_manager());
+            frame = 0;
+        }
+        frame++;
     }
 }
