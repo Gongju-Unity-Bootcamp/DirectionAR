@@ -28,6 +28,7 @@ public class Define
 		Navigation,
 		ARZone,
 		Street,
+		ARNavigation,
 	}
 
 	public enum Sound

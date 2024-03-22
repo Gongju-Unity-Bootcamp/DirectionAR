@@ -25,34 +25,39 @@ public class NStaticMapManager : MonoBehaviour
 
     private int frame = 0;
 
+    private float latitude = default;
+    private float longitude = default;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        StartCoroutine(GetStaticMap());
         rect = gameObject.GetComponent<RawImage>().rectTransform.rect;
         mapWidth = (int)Math.Round(rect.width);
         mapHeight = (int)Math.Round(rect.height);
 
+        StartCoroutine(GetStaticMap());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (frame >= 100)
+        latitude = Input.location.lastData.latitude;
+        longitude = Input.location.lastData.longitude;
+
+        /*if (frame >= 100)
         {
             StartCoroutine(GetStaticMap());
             frame = 0;
         }
-        frame++;
+        frame++;*/
     }
-
 
     IEnumerator GetStaticMap()
     {
-        url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?" + "w=" + mapWidth + "&h="+ mapHeight + "&level="+ level +"&format=png";
+        url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?" + "w=" + mapWidth.ToString() + "&h=" + mapHeight.ToString() + "&level=" + level.ToString();
 
         var query = "";
-        query += "&center=" + UnityWebRequest.UnEscapeURL(string.Format("{0},{1}", Input.location.lastData.latitude, Input.location.lastData.longitude));
+        query += "&center=" + UnityWebRequest.UnEscapeURL(string.Format("{0},{1}", latitude, longitude));
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url + query);
         www.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", clientID);
@@ -60,10 +65,9 @@ public class NStaticMapManager : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.error == null)
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            Destroy(GetComponent<RawImage>().texture);
-            GetComponent<RawImage>().texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            GetComponent<RawImage>().texture = DownloadHandlerTexture.GetContent(www);
             mapLog.text = "택스쳐 불러오기 성공";
         }
         else
