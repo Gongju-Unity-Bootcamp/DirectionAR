@@ -14,6 +14,17 @@ public class AndroidManager : MonoBehaviour
         _instance.transform.SetParent(GameObject.Find("@Managers").transform);
     }
 
+    void Update()
+    {
+        if (BaseScene.SceneType != Define.SceneType.ARNavigation)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
+
+    }
+
     public GameObject Root
     {
         get
@@ -131,5 +142,47 @@ public class AndroidManager : MonoBehaviour
 
             yield return new WaitUntil(() => Application.isFocused == true);
         }
+    }
+
+    public float delay;
+    public float maxtime = 5f;
+
+    private int frame = 0;
+
+    public IEnumerator LoadGPS()
+    {
+        if (!CheckPerm(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+            while (!CheckPerm(Permission.FineLocation))
+            {
+                yield return null;
+            }
+        }
+
+        Input.location.Start();
+
+        if (!Input.location.isEnabledByUser)
+        {
+            ShowAndroidToastMessage("Gps 장치가 꺼져있음.");
+        }
+
+        while (Input.location.status == LocationServiceStatus.Initializing && delay < maxtime)
+        {
+            yield return new WaitForSeconds(1.0f);
+            delay++;
+        }
+
+        if (Input.location.status == LocationServiceStatus.Failed || Input.location.status == LocationServiceStatus.Stopped)
+        {
+            ShowAndroidToastMessage("위치정보를 가져오는데 실패함.");
+        }
+
+        if (delay >= maxtime)
+        {
+            ShowAndroidToastMessage("지연시간 초과.");
+        }
+
+        yield return new WaitForSeconds(5.0f);
     }
 }
