@@ -10,9 +10,9 @@ public class UI_ARZoneButton : UI_Popup
         if (base.Init() == false)
             return false;
 
-        BaseScene.SceneType = Define.SceneType.ARZone;
-
         GameObject header = GameObject.Find("Header");
+
+        BaseScene.SceneType = Define.SceneType.ARZone;
 
         if (header != null) header.GetComponent<UI_HeaderButton>().UpdateTitle();
         else if (header == null) Managers.UI.ShowSceneUI<UI_Scene>("Header");

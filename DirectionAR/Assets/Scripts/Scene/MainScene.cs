@@ -10,6 +10,8 @@ public class MainScene : BaseScene
 
         SceneType = Define.SceneType.Main;
 
+        Debug.Log($"{SceneType}");
+
         Managers.UI.CloseAllPopupUI();
 
         Managers.UI.ShowSceneUI<UI_Scene>("Footer");

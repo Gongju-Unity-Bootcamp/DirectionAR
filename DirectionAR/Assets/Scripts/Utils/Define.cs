@@ -27,6 +27,7 @@ public class Define
 		Main,
 		Navigation,
 		ARZone,
+		ARCamera,
 		Street,
 		ARNavigation,
 	}
