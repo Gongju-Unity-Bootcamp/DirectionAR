@@ -94,7 +94,7 @@ public class UI_HeaderButton : UI_Scene
 
     void OnClickEmergencyButton()
     {
-        Debug.Log("OnClickEmergencyButton");
+        Managers.Android.ShowAndroidToastMessage("EmergencyButton");
     }
 }
 

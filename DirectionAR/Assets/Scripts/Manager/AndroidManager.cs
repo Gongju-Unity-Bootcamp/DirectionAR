@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class AndroidManager : MonoBehaviour
 {
@@ -42,16 +43,16 @@ public class AndroidManager : MonoBehaviour
 
     void OnGUI()
     {
-        Event e = Event.current;
+        Event _event = Event.current;
 
 #if UNITY_ANDROID
-        if (BaseScene.SceneType != Define.SceneType.Main)
+        if (BaseScene.SceneType != Define.SceneType.Main && BaseScene.SceneType != Define.SceneType.ARCamera)
         {
             GameObject go = GameObject.Find("Header");
 
             if (go == null) return;
 
-            if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Escape)
+            if (_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
             {
                 if (Managers.UI._popupStack.Count < 2)
                 {
@@ -69,19 +70,44 @@ public class AndroidManager : MonoBehaviour
                 return;
             }
         }
+
         if (BaseScene.SceneType == Define.SceneType.Main)
         {
-            if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Escape)
+            if (_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
             {
                 if (Time.time - backButtonPressTime > backButtonPressInterval)
                 {
                     backButtonPressTime = Time.time;
-                    ShowAndroidToastMessage($"'뒤로'버튼을 한번 더 누르시면 종료됩니다.");
+                    ShowAndroidToastMessage($"'뒤로' 버튼을 한번 더 누르면 종료됩니다.");
                 }
                 else
                 {
                     // 두 번째로 뒤로가기 버튼이 눌렸을 때
                     Application.Quit();
+                }
+            }
+        }
+
+        if(BaseScene.SceneType == Define.SceneType.ARCamera)
+        {
+            if(_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
+            {
+                if(Time.time - backButtonPressTime > backButtonPressInterval)
+                {
+                    backButtonPressTime = Time.time;
+                    ShowAndroidToastMessage("'뒤로' 버튼을 한번 더 누르면 종료됩니다.");
+                }
+                else
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex((int)Define.SceneNum.ARCamera));
+                    Scene previousScene = SceneManager.GetSceneByBuildIndex((int)Define.SceneNum.Main);
+                    
+                    foreach(GameObject gameObject in previousScene.GetRootGameObjects())
+                    {
+                        gameObject.SetActive(true);
+                    }
+
+                    BaseScene.SceneType = Define.SceneType.ARZone;
                 }
             }
         }

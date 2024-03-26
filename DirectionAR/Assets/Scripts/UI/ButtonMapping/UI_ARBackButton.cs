@@ -9,9 +9,11 @@ public class UI_ARBackButton : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByBuildIndex((int)Define.SceneNum.ARCamera));
         Scene previousScene = SceneManager.GetSceneByBuildIndex((int)Define.SceneNum.Main);
-        foreach (GameObject obj in previousScene.GetRootGameObjects())
+        foreach (GameObject gameObject in previousScene.GetRootGameObjects())
         {
-            obj.SetActive(true);
+            gameObject.SetActive(true);
         }
+
+        BaseScene.SceneType = Define.SceneType.ARZone;
     }
 }

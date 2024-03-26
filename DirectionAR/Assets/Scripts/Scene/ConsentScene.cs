@@ -12,6 +12,8 @@ public class ConsentScene : BaseScene
 
         SceneType = Define.SceneType.Unknown;
 
+        Debug.Log($"{SceneType}");
+
         if (!PlayerPrefs.HasKey("isFirstRun"))
         {
             PlayerPrefs.SetInt("isFirstRun", 1);

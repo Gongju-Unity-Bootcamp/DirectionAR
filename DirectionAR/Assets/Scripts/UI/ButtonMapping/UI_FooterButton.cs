@@ -58,6 +58,7 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickStreetButton()
     {
+        Managers.Android.ShowAndroidToastMessage("OnClickStreetButton");
         Managers.UI.ShowPopupUI<UI_Popup>("Street");
     }
 }
