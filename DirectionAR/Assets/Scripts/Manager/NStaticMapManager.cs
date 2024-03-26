@@ -75,7 +75,7 @@ public class NStaticMapManager : MonoBehaviour
                 Managers.Android.ShowAndroidToastMessage("위치 서비스를 시작할 수 없습니다.");
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 
