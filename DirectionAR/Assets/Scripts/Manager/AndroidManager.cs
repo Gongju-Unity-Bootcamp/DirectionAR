@@ -8,6 +8,10 @@ public class AndroidManager : MonoBehaviour
 {
     public static AndroidManager _instance { get; private set; }
 
+    [Header("Naver API")]
+    public string clientID = "fnz8tjmtru";
+    public string secretKey = "CWIZPpnOZsShJzKKtH9u7uTB8fqdhPXGUBaDPbk7";
+
     public void Init()
     {
         _instance = Utils.GetOrAddComponent<AndroidManager>(Root);
@@ -90,6 +94,8 @@ public class AndroidManager : MonoBehaviour
 
     public void ShowAndroidToastMessage(string message)
     {
+        Debug.Log(message);
+#if UNITY_ANDROID
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 
@@ -103,6 +109,7 @@ public class AndroidManager : MonoBehaviour
                 toastClass.CallStatic<AndroidJavaObject>("makeText", context, textToShow, toastClass.GetStatic<int>("LENGTH_SHORT")).Call("show");
             }));
         }
+#endif
     }
 
     public bool CheckPerm(string _permission)

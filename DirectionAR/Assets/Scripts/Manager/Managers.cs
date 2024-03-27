@@ -11,11 +11,13 @@ public class Managers : MonoBehaviour
     private static ResourceManager _resourceManager = new ResourceManager();
     private static ARMenuManager _arMenuManager = new ARMenuManager();
     private static AndroidManager _androidManager = new AndroidManager();
+    private static DirectionManager _directionManager = new DirectionManager();
 
     public static UIManager UI { get { Init(); return _uiManager; } }
     public static ResourceManager Resource { get { Init(); return _resourceManager; } }
     public static ARMenuManager ARMenu { get { Init(); return _arMenuManager; } }
     public static AndroidManager Android { get { Init(); return _androidManager; } }
+    public static DirectionManager Direction { get { Init(); return _directionManager; } }
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class Managers : MonoBehaviour
             _resourceManager.Init();
             _arMenuManager.Init();
             _androidManager.Init();
+            _directionManager.Init();
         }
     }
 }
