@@ -9,6 +9,7 @@ public class UI_ConsentGPSButton : UI_Popup
     enum Buttons
     { 
         AllowButton,
+        CloseButton,
     }
 
     public override bool Init()
@@ -19,6 +20,7 @@ public class UI_ConsentGPSButton : UI_Popup
         BindButton(typeof(Buttons));
 
         BindEvent(GetButton((int)Buttons.AllowButton).gameObject, OnClickAllowButton);
+        BindEvent(GetButton((int)Buttons.CloseButton).gameObject, OnClickCloseButton);
 
         return true;
     }
@@ -34,5 +36,10 @@ public class UI_ConsentGPSButton : UI_Popup
         {
             ClosePopupUI();
         }
+    }
+
+    void OnClickCloseButton()
+    {
+        ClosePopupUI();
     }
 }

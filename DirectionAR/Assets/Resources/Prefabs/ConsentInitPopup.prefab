@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 369}
+  m_AnchoredPosition: {x: 0, y: 261}
   m_SizeDelta: {x: 900, y: 144}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3429627320899913646
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1519132671370553028}
   - component: {fileID: -4839713385645451659}
   m_Layer: 5
-  m_Name: ConsentInitPopup
+  m_Name: ConsentInitPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 25e4648e4612a264296ba3d5aff27884, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 070aa38aadc996347b13bc0f991c0d2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine.Android;
 
 public class UI_HeaderButton : UI_Scene
 {
@@ -83,7 +84,7 @@ public class UI_HeaderButton : UI_Scene
         if (Managers.UI._popupStack.Count < 2)
         {
             Managers.UI.CloseAllPopupUI();
-            Managers.Resource.Destroy(GameObject.Find("Header"));
+            Managers.Resource.Destroy(GameObject.Find("Header")); 
             BaseScene.SceneType = Define.SceneType.Main;
         }
 
@@ -93,8 +94,17 @@ public class UI_HeaderButton : UI_Scene
     }
 
     void OnClickEmergencyButton()
-    {
-        Managers.Android.ShowAndroidToastMessage("EmergencyButton");
+    {        
+        bool callPermission = Permission.HasUserAuthorizedPermission(Define.Call.CallPermission);
+
+        if(!callPermission)
+        {
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentCallPopUp");
+        }
+        else
+        {
+            Managers.Android.EmergencyDialer(Define.Call.EmergencyNumber);
+        }
     }
 }
 
