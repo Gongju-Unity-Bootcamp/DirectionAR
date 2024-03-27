@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Define
 {
-	public enum SceneNum
+    public enum SceneNum
 	{
 		Consent,
 		Awake,
@@ -30,6 +30,7 @@ public class Define
 		ARCamera,
 		Street,
 		ARNavigation,
+		Call,
 	}
 
 	public enum Sound
@@ -37,5 +38,14 @@ public class Define
 		Bgm,
 		Effect,
 		Max,
+	}
+
+	public struct Call
+	{
+		public const string CallPermission = "android.permission.CALL_PHONE";
+		
+		public const string TestNumber = "01087491220";
+		public const string TestNumber2 = "01028552569";
+		public const string EmergencyNumber = "112";
 	}
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.UI;
 
 public class UI_MainButton : UI_Scene
@@ -65,7 +66,16 @@ public class UI_MainButton : UI_Scene
 
     void OnClickEmergencyButton()
     {
-        Managers.Android.ShowAndroidToastMessage("OnClickEmergencyButton");
+        bool callPermission = Permission.HasUserAuthorizedPermission(Define.Call.CallPermission);
+
+        if(!callPermission)
+        {
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentCallPopUp");
+        }
+        else
+        {
+            Managers.Android.EmergencyDialer(Define.Call.EmergencyNumber);
+        }
     }
 
     void OnClickMagnifierButton()

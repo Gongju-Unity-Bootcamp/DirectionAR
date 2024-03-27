@@ -22,8 +22,6 @@ public class AndroidManager : MonoBehaviour
             StopAllCoroutines();
             return;
         }
-
-
     }
 
     public GameObject Root
@@ -46,6 +44,17 @@ public class AndroidManager : MonoBehaviour
         Event _event = Event.current;
 
 #if UNITY_ANDROID
+        if(BaseScene.SceneType == Define.SceneType.Call)
+        {
+            if(_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
+            {
+                Managers.UI.ClosePopupUI();
+                BaseScene.SceneType = Define.SceneType.Main;
+            }
+
+            return;
+        }
+
         if (BaseScene.SceneType != Define.SceneType.Main && BaseScene.SceneType != Define.SceneType.ARCamera)
         {
             GameObject go = GameObject.Find("Header");
@@ -132,7 +141,7 @@ public class AndroidManager : MonoBehaviour
     }
 
     public bool CheckPerm(string _permission)
-    {
+    { 
         return Permission.HasUserAuthorizedPermission(_permission);
     }
 
@@ -210,5 +219,23 @@ public class AndroidManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5.0f);
+    }
+
+    public void EmergencyDialer(string phoneNumber)
+    {
+        AndroidJavaClass _unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject _unityActivity = _unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+
+        // 다이얼 화면을 열기 위해 DIAL 액션을 사용한 Intent 생성
+        AndroidJavaObject _intentObject = new AndroidJavaObject("android.content.Intent", "android.intent.action.DIAL");
+
+        // 전화 번호를 설정하여 setData 메서드 호출
+        AndroidJavaClass _uriClass = new AndroidJavaClass("android.net.Uri");
+        AndroidJavaObject _uri = _uriClass.CallStatic<AndroidJavaObject>("parse", "tel:" + phoneNumber);
+        _intentObject.Call<AndroidJavaObject>("setData", _uri);
+
+        // startActivity 호출하여 다이얼 화면 열기
+        _unityActivity.Call("startActivity", _intentObject);
+
     }
 }

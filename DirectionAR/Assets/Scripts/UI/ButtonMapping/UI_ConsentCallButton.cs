@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
-public class UI_ConsentCameraButton : UI_Popup
+public class UI_ConsentCallButton : UI_Popup
 {
     enum Buttons
     {
@@ -20,6 +20,8 @@ public class UI_ConsentCameraButton : UI_Popup
 
         BindButton(typeof(Buttons));
 
+        BaseScene.SceneType = Define.SceneType.Call;
+
         BindEvent(GetButton((int)Buttons.AllowButton).gameObject, OnClickAllowButton);
         BindEvent(GetButton((int)Buttons.CloseButton).gameObject, OnClickCloseButton);
 
@@ -28,9 +30,9 @@ public class UI_ConsentCameraButton : UI_Popup
 
     void OnClickAllowButton()
     {
-        if(!Managers.Android.CheckPerm(Permission.Camera))
+        if(!Managers.Android.CheckPerm(Define.Call.CallPermission))
         {
-            StartCoroutine(Managers.Android.SetPermission(Permission.Camera));
+            StartCoroutine(Managers.Android.SetPermission(Define.Call.CallPermission));
             ClosePopupUI();
         }
         else

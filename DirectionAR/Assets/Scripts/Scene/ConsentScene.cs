@@ -17,7 +17,7 @@ public class ConsentScene : BaseScene
         if (!PlayerPrefs.HasKey("isFirstRun"))
         {
             PlayerPrefs.SetInt("isFirstRun", 1);
-            Managers.UI.ShowPopupUI<UI_Popup>("ConsentInitPopup");
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentInitPopUp");
         }
         else
             SceneManager.LoadScene((int)Define.SceneNum.Awake);
