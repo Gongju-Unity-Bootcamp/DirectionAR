@@ -29,7 +29,6 @@ public class NStaticMapManager : MonoBehaviour
 
     private Texture2D mapTexture;
 
-    private bool isMapLoaded = false;
     private bool isPanMap = false;
 
     private string markers = default;
@@ -109,7 +108,7 @@ public class NStaticMapManager : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Moved && isMapLoaded)
+            if (touch.phase == TouchPhase.Moved)
             {
                 isPanMap = true;
 
@@ -153,11 +152,8 @@ public class NStaticMapManager : MonoBehaviour
             latitude = Input.location.lastData.latitude;
             longitude = Input.location.lastData.longitude;
 
-            if (!isMapLoaded) // 맵이 로드되지 않았을 때에만 로드
-            {
-                UpdateMap();
-                StartCoroutine(LoadMap());
-            }
+            UpdateMap();
+            StartCoroutine(LoadMap());
         }
         else
         {
@@ -198,7 +194,6 @@ public class NStaticMapManager : MonoBehaviour
         {
             mapTexture = DownloadHandlerTexture.GetContent(www);
             rawImage.texture = mapTexture;
-            isMapLoaded = true;
         }
         else
         {
