@@ -11,6 +11,7 @@ public class Define
 		Awake,
 		Main,
 		ARCamera,
+		Navigation,
 	}
 
 	public enum UIEvent
