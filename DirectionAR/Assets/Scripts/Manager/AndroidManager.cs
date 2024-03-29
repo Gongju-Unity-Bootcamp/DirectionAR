@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +57,23 @@ public class AndroidManager : MonoBehaviour
             return;
         }
 
+        if (BaseScene.SceneType == Define.SceneType.Main || BaseScene.SceneType == Define.SceneType.Consent)
+        {
+            if (_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
+            {
+                if (Time.time - backButtonPressTime > backButtonPressInterval)
+                {
+                    backButtonPressTime = Time.time;
+                    ShowAndroidToastMessage($"'뒤로' 버튼을 한번 더 누르면 종료됩니다.");
+                }
+                else
+                {
+                    // 두 번째로 뒤로가기 버튼이 눌렸을 때
+                    Application.Quit();
+                }
+            }
+        }
+
         if (BaseScene.SceneType != Define.SceneType.Main && BaseScene.SceneType != Define.SceneType.ARCamera)
         {
             GameObject go = GameObject.Find("Header");
@@ -77,23 +96,6 @@ public class AndroidManager : MonoBehaviour
                 go.GetComponent<UI_HeaderButton>().UpdatePrevTitle();
 
                 return;
-            }
-        }
-
-        if (BaseScene.SceneType == Define.SceneType.Main)
-        {
-            if (_event.type == EventType.KeyUp && _event.keyCode == KeyCode.Escape)
-            {
-                if (Time.time - backButtonPressTime > backButtonPressInterval)
-                {
-                    backButtonPressTime = Time.time;
-                    ShowAndroidToastMessage($"'뒤로' 버튼을 한번 더 누르면 종료됩니다.");
-                }
-                else
-                {
-                    // 두 번째로 뒤로가기 버튼이 눌렸을 때
-                    Application.Quit();
-                }
             }
         }
 

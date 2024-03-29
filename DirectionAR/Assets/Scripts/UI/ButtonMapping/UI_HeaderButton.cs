@@ -94,16 +94,17 @@ public class UI_HeaderButton : UI_Scene
     }
 
     void OnClickEmergencyButton()
-    {        
-        bool callPermission = Permission.HasUserAuthorizedPermission(Define.Call.CallPermission);
+    {
+        bool callPermission = Permission.HasUserAuthorizedPermission(Define.Permission.Call);
 
-        if(!callPermission)
+        if (!callPermission)
         {
             Managers.UI.ShowPopupUI<UI_Popup>("ConsentCallPopUp");
         }
         else
         {
             Managers.Android.EmergencyDialer(Define.Call.EmergencyNumber);
+            //Managers.Android.ShowAndroidToastMessage("긴급 신고");
         }
     }
 }

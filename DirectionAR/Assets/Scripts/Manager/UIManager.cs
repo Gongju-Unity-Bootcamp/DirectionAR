@@ -7,6 +7,7 @@ public class UIManager
 {
     const int ORIGINORDER = short.MinValue;
     int _order = short.MinValue;
+
     public static UIManager _instance { get; private set; }
     public UI_Scene SceneUI { get; private set; }
 

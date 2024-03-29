@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class ARTrackedImageController : MonoBehaviour
+public class ARMarkerController : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _prefabs;

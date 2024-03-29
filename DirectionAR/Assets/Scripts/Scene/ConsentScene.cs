@@ -10,13 +10,10 @@ public class ConsentScene : BaseScene
     {
         if (!base.Init()) return false;
 
-        SceneType = Define.SceneType.Unknown;
-
-        Debug.Log($"{SceneType}");
+        SceneType = Define.SceneType.Consent;
 
         if (!PlayerPrefs.HasKey("isFirstRun"))
         {
-            PlayerPrefs.SetInt("isFirstRun", 1);
             Managers.UI.ShowPopupUI<UI_Popup>("ConsentInitPopUp");
         }
         else
