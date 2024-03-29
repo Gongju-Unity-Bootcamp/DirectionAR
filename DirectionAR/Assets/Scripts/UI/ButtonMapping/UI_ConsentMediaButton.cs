@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Android;
-using UnityEngine.SceneManagement;
 
-public class UI_ConsentCallButton : UI_Popup
+public class UI_ConsentMediaButton : UI_Popup
 {
     enum Buttons
     {
@@ -30,9 +27,9 @@ public class UI_ConsentCallButton : UI_Popup
 
     void OnClickAllowButton()
     {
-        if(!Managers.Android.CheckPerm(Define.Permission.Call))
+        if (!Managers.Android.CheckPerm(Define.Permission.Media))
         {
-            StartCoroutine(Managers.Android.SetPermission(Define.Permission.Call));
+            StartCoroutine(Managers.Android.SetPermission(Define.Permission.Media));
             ClosePopupUI();
         }
         else

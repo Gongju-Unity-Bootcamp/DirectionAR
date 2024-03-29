@@ -25,23 +25,11 @@ public class UI_ConsentInitPopup : UI_Popup
 
     void OnClickStartButton()
     {
-        bool camPermission = Permission.HasUserAuthorizedPermission(Permission.Camera);
-        bool gpsPermission = Permission.HasUserAuthorizedPermission(Permission.FineLocation);
-        bool callPermission = Permission.HasUserAuthorizedPermission(Define.Call.CallPermission);
+        string[] RequiredPermissions = { Permission.Camera, Permission.FineLocation, Define.Permission.Call, Define.Permission.Media};
 
-        if (!callPermission)
-        {
-            Permission.RequestUserPermission(Define.Call.CallPermission);
-        }
-        if(!camPermission)
-        {
-            Permission.RequestUserPermission(Permission.Camera);
-        }
-        if (!gpsPermission)
-        {
-            Permission.RequestUserPermission(Permission.FineLocation);
-        }
-        
+        Permission.RequestUserPermissions(RequiredPermissions);
+
+        PlayerPrefs.SetInt("isFirstRun", 1);
         SceneManager.LoadScene((int)Define.SceneNum.Awake);
     }
 }
