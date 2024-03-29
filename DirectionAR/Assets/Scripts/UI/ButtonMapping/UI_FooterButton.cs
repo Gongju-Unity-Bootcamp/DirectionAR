@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class UI_FooterButton : UI_Scene
 {
@@ -40,8 +42,12 @@ public class UI_FooterButton : UI_Scene
 
     void OnClickNavButton()
     {
+        bool gpsPermission = Managers.Android.CheckPerm(Permission.FineLocation);
 
-        Managers.UI.ShowPopupUI<UI_Popup>("Navigation");
+        if (!gpsPermission)
+            Managers.UI.ShowPopupUI<UI_Popup>("ConsentGPSPopUp");
+        else
+            SceneManager.LoadScene((int)Define.SceneNum.Navigation);
     }
 
     void OnClickARZoneButton()

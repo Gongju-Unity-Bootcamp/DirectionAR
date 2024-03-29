@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARCamera.unity
     guid: 45c5538db40cac342a4aee4291dd86b1
+  - enabled: 1
+    path: Assets/Scenes/Navigation.unity
+    guid: 9b9a365fc487ecd49a031d244f0d90b4
   - enabled: 0
     path: Assets/Scenes/ARNavigation.unity
     guid: bcc2bdcc3ee0adc42a38653bd72e3805
